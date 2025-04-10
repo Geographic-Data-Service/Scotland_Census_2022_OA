@@ -109,7 +109,7 @@ if __name__ == "__main__":
             if len(df) != 46363:
                 # skip the table if it doesn't have 46363 rows, this removes tmp/UV608 - National Statistics Socio-economic Classification (NS-SeC) of Household Reference Person (HRP).csv
                 # which only has 1 row for some reason
-                print(f"Table {t_id} has {len(df)} rows, not 46363 as spected so we dont include it")
+                print(f"Table {t_id} has {len(df)} rows, not 46363 as expected so we dont include it")
                 continue
 
                 # # validate data and types
