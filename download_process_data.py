@@ -20,9 +20,11 @@ if __name__ == "__main__":
 
 
     #data dirs
-    url = "https://nrscensusprodumb.blob.core.windows.net/media/zz85kfinmf97whklasd98gfjk_20241003_1200_Topic2G__9575hj6t9375h/Census-2022-Output-Area-v1.zip"
+    url = "https://www.scotlandscensus.gov.uk/media/zz85kfinmf97whklasd98gfkadft5hj4f_Topic2H_20241120_1747/Census-2022-Output-Area-v1.zip"
     # Download the zip file
     r = requests.get(url)
+    if r.status_code != 200:
+        raise Exception(f"Failed to download Scottish data file from {url} with status code {r.status_code}")
     z = zipfile.ZipFile(BytesIO(r.content))
     z.extractall("./tmp")
 
@@ -107,7 +109,7 @@ if __name__ == "__main__":
             if len(df) != 46363:
                 # skip the table if it doesn't have 46363 rows, this removes tmp/UV608 - National Statistics Socio-economic Classification (NS-SeC) of Household Reference Person (HRP).csv
                 # which only has 1 row for some reason
-                print(f"Table {t_id} has {len(df)} rows, not 46363")
+                print(f"Table {t_id} has {len(df)} rows, not 46363 as spected so we dont include it")
                 continue
 
                 # # validate data and types
